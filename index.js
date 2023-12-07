@@ -19,23 +19,26 @@ app.use(morgan("dev"));
 app.use(bodyParser.json())
 
 
+app.use(bookRoute)
+
+
 app.get(`/`, (req, res) => {
   let message = "BOOKS APIS"
-    res.status(200).send(message);
-  })
-  
-  app.use("*", (req, res, next) => {
-    res.status(400).send("Page Not Found!");
-    next()
-  })
+  return res.status(200).send(message);
+})
+
+app.use("*", (req, res, next) => {
+  return res.status(400).send("Page Not Found!");
+  next()
+})
 
 
-app.use(bookRoute)
+
 
 
 // database start
 mongoose.connect(process.env.DATABASE).then((res) => {
-    console.log(`Database Connected`)
+  console.log(`Database Connected`)
 }).catch(err => console.log(err))
 
 
