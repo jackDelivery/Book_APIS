@@ -20,7 +20,8 @@ app.use(bodyParser.json())
 
 
 app.get(`/`, (req, res) => {
-    res.status(200).send("BOOKS APIS");
+  let message = "BOOKS APIS"
+    res.status(200).send(message);
   })
   
   app.use("*", (req, res, next) => {
