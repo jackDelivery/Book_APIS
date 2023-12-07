@@ -19,7 +19,14 @@ app.use(morgan("dev"));
 app.use(bodyParser.json())
 
 
-
+app.get(`/`, (req, res) => {
+    res.status(200).send("BOOKS APIS");
+  })
+  
+  app.use("*", (req, res, next) => {
+    res.status(400).send("Page Not Found!");
+    next()
+  })
 
 
 app.use(bookRoute)
